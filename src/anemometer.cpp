@@ -2,7 +2,7 @@
 #include "anemometer.h"
 
 // define the input pin here
-#define ANEMOMETER A1
+#define ANEMOMETER A5
 // input pins defined
 
 float read_anemometer()

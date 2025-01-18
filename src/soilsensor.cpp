@@ -2,7 +2,7 @@
 #include "soilsensor.h"
 
 // define moisture sensor input pin
-#define MOISTURE_PIN A2
+#define MOISTURE_PIN A6
 
 float soil_moisture_read()
 {
