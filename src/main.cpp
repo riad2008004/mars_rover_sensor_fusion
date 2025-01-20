@@ -44,5 +44,5 @@ void loop()
                 "\", " + "\"DHT_HUMIDITY\": \"" + String(DHT_HUMIDITY) +
                 "\"ATMOSPHIC_PRESSURE\": \"" + String(ATMOSPHIC_PRESSURE) + "\"}";
   Serial.println(data);
-  delay(500);
+  delay(1000);
 }
