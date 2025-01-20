@@ -7,6 +7,7 @@
 #define DHT_CONNECT 2    
 DHT dht;
 
+
 void dht11_setup()
 {
   dht.setup(DHT_CONNECT); 

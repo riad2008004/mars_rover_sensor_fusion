@@ -11,9 +11,7 @@ void temperature_sensor_setup()
 
     if (!mlx.begin())
     {
-        Serial.println("Temperature Sensor Not Found");
-        while (1)
-            ;
+        delay(100);
     }
 }
 
