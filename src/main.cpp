@@ -3,12 +3,18 @@
 #include "anemometer.h"
 #include "soilsensor.h"
 #include "dustsensor.h"
+#include "dht11.h"
+#include "ph_sensor.h"
+
+float WIND_SPEED, SOIL_MOISTURE, AMBIENT_TEMPERATURE, TERGET_TEMPERATURE, DUST_VALUE,
+    DHT_TEMPERATURE, DHT_HUMIDITY, SOIL_PH = 0;
 
 void setup()
 {
   Serial.begin(9600);
 
-  temperature_sensor_setup();
+  dht11_setup();
+  // temperature_sensor_setup();
   dust_sensor_setup();
 }
 
@@ -22,12 +28,19 @@ void loop()
   Serial.print("%");
   Serial.print("  ");
   Serial.print("Am T(C):");
-  Serial.print(read_ambient_temp());
+  // Serial.print(read_ambient_temp());
   Serial.print("  Tergt T(C):");
-  Serial.print(read_terget_temp());
+  // Serial.print(read_terget_temp());
   Serial.print("  Dust Density: ");
   Serial.print(read_dust_value());
-  Serial.println("ug/m3");
+  Serial.print("ug/m3  ");
+  Serial.print("PH:");
+  Serial.print(read_PH_data());
+  Serial.print("  Tem:");
+  Serial.print(read_dht_temperature());
+  Serial.print("C Hum:");
+  Serial.print(read_dht_humidity());
+  Serial.println("%");
 
   delay(500);
 }
