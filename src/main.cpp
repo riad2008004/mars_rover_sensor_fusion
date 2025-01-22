@@ -41,8 +41,8 @@ void loop()
                 "\", \"DUST_VALUE\": \"" + String(DUST_VALUE) +
                 "\", " + "\"SOIL_PH\": \"" + String(SOIL_PH) +
                 "\", \"DHT_TEMPERATURE\": \"" + String(DHT_TEMPERATURE) +
-                "\", " + "\"DHT_HUMIDITY\": \"" + String(DHT_HUMIDITY) +
+                "\", " + "\"DHT_HUMIDITY\": \"" + String(DHT_HUMIDITY) + "\", " +
                 "\"ATMOSPHIC_PRESSURE\": \"" + String(ATMOSPHIC_PRESSURE) + "\"}";
   Serial.println(data);
-  delay(1000);
+  delay(100);
 }

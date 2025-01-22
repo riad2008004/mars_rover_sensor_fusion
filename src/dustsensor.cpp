@@ -2,8 +2,8 @@
 #include "dustsensor.h"
 
 // Define pin connections
-#define measurePin A2 // A0 ,A1 nosto
-#define ledPower 7    // For generating pulse
+#define measurePin A7 // A0 ,A1 nosto
+#define ledPower 4    // For generating pulse
 
 // Timing constants
 const int samplingTime = 280;

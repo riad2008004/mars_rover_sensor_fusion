@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "ph_sensor.h"
 
-#define PH_SENSOR_PIN A6
+#define PH_SENSOR_PIN A2
 
 float slope = -7.5;
 float offset = 35.5;
