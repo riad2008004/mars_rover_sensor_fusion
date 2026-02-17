@@ -61,11 +61,11 @@ void loop()
 void all_sensor_data_update()
 {
   sensors.WIND_SPEED = read_anemometer();
+  sensors.SOIL_MOISTURE = soil_moisture_read();
 
-  // SOIL_MOISTURE = soil_moisture_read();
   // SOIL_TEMPERATURE = read_terget_temp();
   // AMBIENT_TEMPERATURE = read_ambient_temp();
-  // // DUST_VALUE = read_dust_value();
+  // DUST_VALUE = read_dust_value();
   // DHT_TEMPERATURE = read_dht_temperature();
   // DHT_HUMIDITY = read_dht_humidity();
   // ATMOSPHIC_PRESSURE = read_pressure();
