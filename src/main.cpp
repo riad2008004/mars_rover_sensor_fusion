@@ -7,7 +7,7 @@
 #include "motor_drive.h"
 #include "pressure_sensor.h"
 
-const int TOKEN_EXECUTION_TIME = 500;
+const int TOKEN_EXECUTION_TIME = 100;
 
 struct SensorData
 {
@@ -46,20 +46,16 @@ void loop()
   {
     String token = Serial.readStringUntil('\n');
     token.trim();
-    execute_command(token);
+    if (token != "SENSOR_DATA_REQUEST")
+    {
+      execute_command(token);
+    }
+    else
+    {
+      all_sensor_data_update();
+    }
     delay(TOKEN_EXECUTION_TIME);
   }
-
-  // all_sensor_data_update();
-  // String data = "{\"WIND_SPEED\": \"" + String(WIND_SPEED) +
-  //               "\", \"SOIL_MOISTURE\": \"" + String(SOIL_MOISTURE) + "\", " +
-  //               "\"AMBIENT_TEMPERATURE\": \"" + String(AMBIENT_TEMPERATURE) +
-  //               "\", \"DUST_VALUE\": \"" + String(DUST_VALUE) +
-  //               "\", \"DHT_TEMPERATURE\": \"" + String(DHT_TEMPERATURE) +
-  //               "\", " + "\"DHT_HUMIDITY\": \"" + String(DHT_HUMIDITY) + "\", " +
-  //               "\"ATMOSPHIC_PRESSURE\": \"" + String(ATMOSPHIC_PRESSURE) + "\"}";
-  // Serial.println(data);
-  // delay(1000);
 }
 
 void all_sensor_data_update()
@@ -72,4 +68,15 @@ void all_sensor_data_update()
   // DHT_TEMPERATURE = read_dht_temperature();
   // DHT_HUMIDITY = read_dht_humidity();
   // ATMOSPHIC_PRESSURE = read_pressure();
+
+  // all_sensor_data_update();
+  // String data = "{\"WIND_SPEED\": \"" + String(WIND_SPEED) +
+  //               "\", \"SOIL_MOISTURE\": \"" + String(SOIL_MOISTURE) + "\", " +
+  //               "\"AMBIENT_TEMPERATURE\": \"" + String(AMBIENT_TEMPERATURE) +
+  //               "\", \"DUST_VALUE\": \"" + String(DUST_VALUE) +
+  //               "\", \"DHT_TEMPERATURE\": \"" + String(DHT_TEMPERATURE) +
+  //               "\", " + "\"DHT_HUMIDITY\": \"" + String(DHT_HUMIDITY) + "\", " +
+  //               "\"ATMOSPHIC_PRESSURE\": \"" + String(ATMOSPHIC_PRESSURE) + "\"}";
+  // Serial.println(data);
+  // delay(1000);
 }

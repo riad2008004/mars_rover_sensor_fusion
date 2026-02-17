@@ -5,9 +5,9 @@
 const int DRILL_UP = 5;
 const int DRILL_DOWN = 6;
 const int DRILL_CLOCK = 7;
-const int DRILL_ANTI = 8;
-const int ACTUATOR_UP = 9;
-const int ACTUATOR_DOWN = 10;
+const int DRILL_ANTI = 25;
+const int ACTUATOR_UP = 8;
+const int ACTUATOR_DOWN = 9;
 
 void drill_motors_setup()
 {
@@ -16,6 +16,8 @@ void drill_motors_setup()
         pinMode(i, OUTPUT);
         digitalWrite(i, HIGH);
     }
+    pinMode(25, OUTPUT);
+    digitalWrite(25, HIGH);
 }
 
 void drill_down()
