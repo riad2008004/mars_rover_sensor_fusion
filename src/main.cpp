@@ -50,7 +50,7 @@ void loop()
     {
       execute_command(token);
     }
-    else
+    else if (token == "SENSOR_DATA_REQUEST")
     {
       all_sensor_data_update();
     }
@@ -60,7 +60,8 @@ void loop()
 
 void all_sensor_data_update()
 {
-  // WIND_SPEED = read_anemometer();
+  sensors.WIND_SPEED = read_anemometer();
+
   // SOIL_MOISTURE = soil_moisture_read();
   // SOIL_TEMPERATURE = read_terget_temp();
   // AMBIENT_TEMPERATURE = read_ambient_temp();
@@ -69,14 +70,22 @@ void all_sensor_data_update()
   // DHT_HUMIDITY = read_dht_humidity();
   // ATMOSPHIC_PRESSURE = read_pressure();
 
-  // all_sensor_data_update();
-  // String data = "{\"WIND_SPEED\": \"" + String(WIND_SPEED) +
-  //               "\", \"SOIL_MOISTURE\": \"" + String(SOIL_MOISTURE) + "\", " +
-  //               "\"AMBIENT_TEMPERATURE\": \"" + String(AMBIENT_TEMPERATURE) +
-  //               "\", \"DUST_VALUE\": \"" + String(DUST_VALUE) +
-  //               "\", \"DHT_TEMPERATURE\": \"" + String(DHT_TEMPERATURE) +
-  //               "\", " + "\"DHT_HUMIDITY\": \"" + String(DHT_HUMIDITY) + "\", " +
-  //               "\"ATMOSPHIC_PRESSURE\": \"" + String(ATMOSPHIC_PRESSURE) + "\"}";
-  // Serial.println(data);
-  // delay(1000);
+  String data = "{";
+
+  data += "\"CO\":" + String(sensors.CO, 2) + ",";
+  data += "\"AMMONIA\":" + String(sensors.AMMONIA, 2) + ",";
+  data += "\"ETHANOL\":" + String(sensors.ETHANOL, 2) + ",";
+  data += "\"H2\":" + String(sensors.H2, 2) + ",";
+  data += "\"METHANE\":" + String(sensors.METHANE, 2) + ",";
+  data += "\"WIND_SPEED\":" + String(sensors.WIND_SPEED, 2) + ",";
+  data += "\"SOIL_MOISTURE\":" + String(sensors.SOIL_MOISTURE, 2) + ",";
+  data += "\"AMBIENT_TEMPERATURE\":" + String(sensors.AMBIENT_TEMPERATURE, 2) + ",";
+  data += "\"SOIL_TEMPERATURE\":" + String(sensors.SOIL_TEMPERATURE, 2) + ",";
+  data += "\"DUST_VALUE\":" + String(sensors.DUST_VALUE, 2) + ",";
+  data += "\"DHT_TEMPERATURE\":" + String(sensors.DHT_TEMPERATURE, 2) + ",";
+  data += "\"DHT_HUMIDITY\":" + String(sensors.DHT_HUMIDITY, 2) + ",";
+  data += "\"ATMOSPHERIC_PRESSURE\":" + String(sensors.ATMOSPHERIC_PRESSURE, 2);
+  data += "}";
+
+  Serial.println(data);
 }
