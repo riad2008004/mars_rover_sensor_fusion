@@ -23,15 +23,18 @@ void dust_sensor_setup()
 }
 float read_dust_value()
 {
-    digitalWrite(ledPower, LOW);
-    delayMicroseconds(samplingTime);
 
-    voMeasured = analogRead(measurePin);
-    delayMicroseconds(deltaTime);
-    digitalWrite(ledPower, HIGH);
-    delayMicroseconds(sleepTime);
-    calcVoltage = voMeasured * (5.0 / 1024.0);
-    dustDensity = calibrationConstant * calcVoltage - 0.1;
+    return 1.11;
 
-    return dustDensity;
+    // digitalWrite(ledPower, LOW);
+    // delayMicroseconds(samplingTime);
+
+    // voMeasured = analogRead(measurePin);
+    // delayMicroseconds(deltaTime);
+    // digitalWrite(ledPower, HIGH);
+    // delayMicroseconds(sleepTime);
+    // calcVoltage = voMeasured * (5.0 / 1024.0);
+    // dustDensity = calibrationConstant * calcVoltage - 0.1;
+
+    // return dustDensity;
 }

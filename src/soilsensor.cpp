@@ -2,13 +2,14 @@
 #include "soilsensor.h"
 
 // define moisture sensor input pin
-#define MOISTURE_PIN A4
+#define MOISTURE_PIN A6
 
 float soil_moisture_read()
 {
     float soil_moisture = 0;
     int moisture_in = analogRead(MOISTURE_PIN);
-    float moisture_voltage = moisture_in * (5.0 / 1023.0);
-    soil_moisture = map(moisture_voltage, 3.15, 1.84, 0.0, 100.00);
+    long double moisture_voltage = moisture_in * (5.0 / 1023.0);
+    soil_moisture = ((moisture_voltage - 1.83) / (4.75 - 1.83)) * 100;
+    soil_moisture = 100 - soil_moisture;
     return soil_moisture;
 }

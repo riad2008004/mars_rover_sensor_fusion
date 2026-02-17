@@ -12,6 +12,7 @@ void temperature_sensor_setup()
     if (!mlx.begin())
     {
         delay(100);
+        Serial.println("Temperature Sensor Setup Done");
     }
 }
 
