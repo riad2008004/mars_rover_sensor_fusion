@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <Servo.h>
 #include <string.h>
 #include "motor_drive.h"
 
@@ -9,6 +10,13 @@ const int DRILL_ANTI = 25;
 const int ACTUATOR_UP = 8;
 const int ACTUATOR_DOWN = 9;
 
+const int GATE_CLOSE = 0;
+const int GATE_OPEN = 60;
+
+const int SERVO_ATTACH = 4;
+
+Servo gate_servo;
+
 void drill_motors_setup()
 {
     for (int i = 5; i < 12; i++)
@@ -18,6 +26,9 @@ void drill_motors_setup()
     }
     pinMode(25, OUTPUT);
     digitalWrite(25, HIGH);
+
+    gate_servo.attach(SERVO_ATTACH);
+    gate_servo.write(GATE_CLOSE);
 }
 
 void drill_down()
@@ -115,6 +126,14 @@ void execute_command(const String &token)
     else if (token == "ACTUATOR_STOP")
     {
         actuator_stop();
+    }
+    else if (token == "GATE_OPEN")
+    {
+        gate_servo.write(GATE_OPEN);
+    }
+    else if (token == "GATE_CLOSE")
+    {
+        gate_servo.write(GATE_CLOSE);
     }
     else if (token == "")
     {

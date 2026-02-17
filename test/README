@@ -1,11 +1,226 @@
+# MARS ROVER SENSOR FUSION
 
-This directory is intended for PlatformIO Test Runner and project tests.
+### (Arduino Mega – VS Code / PlatformIO Project)
 
-Unit Testing is a software testing method by which individual units of
-source code, sets of one or more MCU program modules together with associated
-control data, usage procedures, and operating procedures, are tested to
-determine whether they are fit for use. Unit testing finds problems early
-in the development cycle.
+---
 
-More information about PlatformIO Unit Testing:
-- https://docs.platformio.org/en/latest/advanced/unit-testing/index.html
+## 📌 Project Overview
+
+This project is an **Arduino Mega 2560 based embedded system** that integrates:
+
+* 🛠 Drill motor control (Up/Down + Rotation)
+* ⚙ Linear actuator control
+* 🚪 Servo-controlled gate
+* 🌡 Environmental monitoring system
+* 📡 Serial command interface
+* 📦 JSON-based sensor data response
+
+The system allows **command-based mechanical control** and **on-demand environmental data retrieval**.
+
+---
+
+# 🏗 Project Structure (PlatformIO)
+
+```
+project-root/
+│
+├── include/
+│   └── motor_drive.h
+│
+├── src/
+│   ├── main.cpp
+│   ├── motor_drive.cpp
+│   ├── temperaturesensor.cpp
+│   ├── anemometer.cpp
+│   ├── soilsensor.cpp
+│   ├── dustsensor.cpp
+│   ├── dht11.cpp
+│   └── pressure_sensor.cpp
+│
+├── platformio.ini
+└── README.md
+```
+
+---
+
+# ⚙ PlatformIO Configuration
+
+## Example `platformio.ini`
+
+```ini
+[env:megaatmega2560]
+platform = atmelavr
+board = megaatmega2560
+framework = arduino
+monitor_speed = 9600
+```
+
+---
+
+# 🔌 Pin Configuration
+
+| Function         | Pin |
+| ---------------- | --- |
+| Drill Up         | 5   |
+| Drill Down       | 6   |
+| Drill Clockwise  | 7   |
+| Drill Anti       | 25  |
+| Actuator Up      | 8   |
+| Actuator Down    | 9   |
+| Servo Gate       | 4   |
+| Gas Sensor (ADC) | A8  |
+
+---
+
+# 📡 Serial Commands
+
+Use **PlatformIO Serial Monitor**:
+
+```
+PlatformIO → Monitor
+```
+
+or run:
+
+```
+pio device monitor
+```
+
+Baud rate: **9600**
+
+---
+
+## 🔧 Drill Commands
+
+```
+DRILL_UP
+DRILL_DOWN
+DRILL_UP_DOWN_STOP
+DRILL_CLOCK
+DRILL_ANTI
+DRILL_ROTATION_STOP
+```
+
+---
+
+## ⚙ Actuator Commands
+
+```
+ACTUATOR_UP
+ACTUATOR_DOWN
+ACTUATOR_STOP
+```
+
+---
+
+## 🚪 Gate Commands
+
+```
+GATE_OPEN
+GATE_CLOSE
+```
+
+---
+
+## 📊 Request Sensor Data
+
+```
+SENSOR_DATA_REQUEST
+```
+
+---
+
+# 📦 JSON Output Example
+
+```json
+{
+  "CO":0.00,
+  "AMMONIA":0.00,
+  "ETHANOL":0.00,
+  "H2":0.00,
+  "METHANE":0.00,
+  "WIND_SPEED":2.45,
+  "SOIL_MOISTURE":56.20,
+  "AMBIENT_TEMPERATURE":28.40,
+  "SOIL_TEMPERATURE":26.80,
+  "DUST_VALUE":135.00,
+  "DHT_TEMPERATURE":29.10,
+  "DHT_HUMIDITY":65.30,
+  "ATMOSPHERIC_PRESSURE":1012.80
+}
+```
+
+---
+
+# 🚀 How to Build & Upload (VS Code)
+
+### 1️⃣ Build Project
+
+```
+pio run
+```
+
+### 2️⃣ Upload to Board
+
+```
+pio run --target upload
+```
+
+### 3️⃣ Open Serial Monitor
+
+```
+pio device monitor
+```
+
+---
+
+# 🧠 System Features
+
+✔ Modular architecture
+✔ Struct-based sensor data management
+✔ Command-driven motor control
+✔ JSON formatted response
+✔ Expandable sensor support
+✔ Servo-based gate mechanism
+
+---
+
+# ⚠ Important Notes
+
+* Use stable 5V power for motors and servo.
+* Gas sensors require warm-up time.
+* Avoid rapid command spamming.
+* Servo initializes in closed position.
+* Motors default to OFF state at startup.
+
+---
+
+# 🔮 Future Improvements
+
+* Non-blocking serial parser
+* MQTT/WiFi integration
+* SD card logging
+* Automatic periodic sensor streaming
+* Error handling & fault detection
+* Web dashboard interface
+
+---
+
+# 👨‍💻 Developed For
+
+Embedded Systems Development
+Arduino Mega 2560
+VS Code + PlatformIO Environment
+
+---
+
+If you want, I can also generate:
+
+* 🔄 Non-blocking architecture version
+* 🏗 System block diagram explanation
+* 📊 Final year project documentation version
+* 🧪 Testing & validation section
+* 🔐 Secure command authentication version
+
+Tell me your project type (research / final year / industrial prototype).
+
