@@ -9,6 +9,8 @@ const int DRILL_CLOCK = 7;
 const int DRILL_ANTI = 25;
 const int ACTUATOR_UP = 8;
 const int ACTUATOR_DOWN = 9;
+const int FUNEL_RIGHT = 10;
+const int FUNEL_LEFT = 11;
 
 const int GATE_CLOSE = 0;
 const int GATE_OPEN = 60;
@@ -89,6 +91,23 @@ void actuator_stop()
     digitalWrite(ACTUATOR_DOWN, HIGH);
 }
 
+void funel_right()
+{
+    digitalWrite(FUNEL_RIGHT, HIGH);
+    digitalWrite(FUNEL_LEFT, LOW);
+}
+
+void funel_left()
+{
+    digitalWrite(FUNEL_LEFT, HIGH);
+    digitalWrite(FUNEL_RIGHT, LOW);
+}
+void funel_stop()
+{
+    digitalWrite(FUNEL_LEFT, HIGH);
+    digitalWrite(FUNEL_RIGHT, HIGH);
+}
+
 void execute_command(const String &token)
 {
     if (token == "DRILL_UP")
@@ -134,6 +153,18 @@ void execute_command(const String &token)
     else if (token == "GATE_CLOSE")
     {
         gate_servo.write(GATE_CLOSE);
+    }
+    else if (token == "FUNEL_RIGHT")
+    {
+        funel_right();
+    }
+    else if (token == "FUNEL_LEFT")
+    {
+        funel_left();
+    }
+    else if (token == "FUNEL_STOP")
+    {
+        funel_stop();
     }
     else if (token == "")
     {
