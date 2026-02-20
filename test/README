@@ -67,6 +67,8 @@ monitor_speed = 9600
 | Drill Anti       | 25  |
 | Actuator Up      | 8   |
 | Actuator Down    | 9   |
+| Funel Right      | 10  |
+| Funel Left       | 11  |
 | Servo Gate       | 4   |
 | Gas Sensor (ADC) | A8  |
 
@@ -118,6 +120,15 @@ ACTUATOR_STOP
 ```
 GATE_OPEN
 GATE_CLOSE
+```
+
+---
+## 🚪 FUNEL Commands
+
+```
+FUNEL_RIGHT
+FUNEL_LEFT
+FUNEL_STOP
 ```
 
 ---
